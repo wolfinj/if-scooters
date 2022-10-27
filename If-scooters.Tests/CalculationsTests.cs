@@ -1,9 +1,9 @@
-using if_scooters.Exceptions;
-using static if_scooters.Calculations;
+using if_scooters.core.Exceptions;
+using static if_scooters.services.Calculations;
 
 namespace If_scooters.Tests;
 
-public class Calculations
+public class CalculationsTests
 {
     private readonly decimal _max = 20;
     private readonly decimal _rate = 0.2m;

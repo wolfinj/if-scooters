@@ -1,31 +1,28 @@
-using if_scooters.Exceptions;
-using static if_scooters.Calculations;
+using if_scooters.core.Exceptions;
+using if_scooters.core.Models;
+using if_scooters.core.Services;
+using if_scooters.data;
+using static if_scooters.services.Calculations;
 
-namespace if_scooters;
+namespace if_scooters.services;
 
-public class RentalCompany : IRentalCompany
+public class RentalCompanyService : IRentalCompanyService
 {
-    private readonly List<RentedScooter> _rentalHistory;
+    private readonly IScooterDbContext _dbContext;
 
     private readonly IScooterService _scooterService;
 
     public string Name { get; }
 
-    public RentalCompany(string name, IScooterService scooterService)
+    
+    public RentalCompanyService( IScooterService scooterService,IScooterDbContext context)
     {
-        Name = name;
+        // Name = name;
         _scooterService = scooterService;
-        _rentalHistory = new List<RentedScooter>();
+        _dbContext = context;
     }
 
-    public RentalCompany(string name, IScooterService scooterService, List<RentedScooter> rentalHistory)
-    {
-        Name = name;
-        _scooterService = scooterService;
-        _rentalHistory = rentalHistory;
-    }
-
-    public void StartRent(string id)
+    public void StartRent(int id)
     {
         var scooter = _scooterService.GetScooterById(id);
 
@@ -36,14 +33,15 @@ public class RentalCompany : IRentalCompany
 
         scooter.IsRented = true;
 
-        _rentalHistory.Add(new RentedScooter(scooter.Id, DateTime.UtcNow.AddHours(3), scooter.PricePerMinute));
+        _dbContext.RentedScooters.Add(new RentedScooter(scooter.Id, DateTime.UtcNow.AddHours(3), scooter.PricePerMinute));
+        _dbContext.SaveChanges();
     }
 
-    public decimal EndRent(string id)
+    public decimal EndRent(int id)
     {
         var scooter = _scooterService.GetScooterById(id);
 
-        var rentedScooter = _rentalHistory.FirstOrDefault(scoot => scoot.Id == id && !scoot.RentEnd.HasValue);
+        var rentedScooter = _dbContext.RentedScooters.LastOrDefault(scoot => scoot.ScooterId == id);
 
         if (rentedScooter is null)
         {
@@ -70,23 +68,22 @@ public class RentalCompany : IRentalCompany
 
             if (includeNotCompletedRentals)
             {
-                rentsOfYear = _rentalHistory
+                rentsOfYear = _dbContext.RentedScooters
                     .Where(rental =>
-                        rental.RentEnd?.Year == year
-                        ||
-                        rental.RentEnd == null)
+                        rental.RentEnd == null || 
+                        rental.RentEnd.Value.Year == year)
                     .ToList();
             }
             else
             {
-                rentsOfYear = _rentalHistory
-                    .Where(rental => rental.RentEnd?.Year == year)
+                rentsOfYear = _dbContext.RentedScooters
+                    .Where(rental => rental.RentEnd!.Value.Year == year)
                     .ToList();
             }
         }
         else
         {
-            rentsOfYear = _rentalHistory;
+            rentsOfYear = _dbContext.RentedScooters.ToList();
         }
 
         var income = rentsOfYear
