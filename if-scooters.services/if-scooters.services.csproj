@@ -7,4 +7,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\if-scooters.core\if-scooters.core.csproj" />
+      <ProjectReference Include="..\if-scooters.data\if-scooters.data.csproj" />
+    </ItemGroup>
+
 </Project>

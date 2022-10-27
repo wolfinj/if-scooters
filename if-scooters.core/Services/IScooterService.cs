@@ -1,4 +1,6 @@
-namespace if_scooters;
+using if_scooters.core.Models;
+
+namespace if_scooters.core.Services;
 
 public interface IScooterService
 {
@@ -7,13 +9,13 @@ public interface IScooterService
     /// </summary>
     /// <param name="id">Unique ID of the scooter</param>
     /// <param name="pricePerMinute">Rental price of the scooter per one minute</param>
-    void AddScooter(string id, decimal pricePerMinute);
+    IServiceResult AddScooter(decimal pricePerMinute);
 
     /// <summary>
     /// Remove scooter. This action is not allowed for scooters if the rental is in progress.
     /// </summary>
     /// <param name="id">Unique ID of the scooter</param>
-    void RemoveScooter(string id);
+    IServiceResult RemoveScooter(int id);
 
     /// <summary>
     /// List of scooters that belong to the company.
@@ -26,5 +28,5 @@ public interface IScooterService
     /// </summary>
     /// <param name="scooterId">Unique ID of the scooter.</param>
     /// <returns>Return a particular scooter.</returns>
-    Scooter GetScooterById(string scooterId);
+    Scooter GetScooterById(int scooterId);
 }

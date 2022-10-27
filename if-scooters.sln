@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "if-scooters", "if-scooters\if-scooters.csproj", "{F872B4B8-7CAD-41AF-991D-76958C673020}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "If-scooters.Tests", "If-scooters.Tests\If-scooters.Tests.csproj", "{E7A34B40-1FBE-430E-BEAC-1A1A15CE80E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "if-scooters.core", "if-scooters.core\if-scooters.core.csproj", "{4AB462BE-0B5D-43B5-99E0-B7D771F87442}"
@@ -10,16 +8,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "if-scooters.data", "if-scoo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "if-scooters.services", "if-scooters.services\if-scooters.services.csproj", "{5CF94BF7-66C1-412A-8DFD-346F2014BEAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "if-scooters.api", "if-scooters.api\if-scooters.api.csproj", "{81AA2C65-A2BB-426B-9738-2C61A327486E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F872B4B8-7CAD-41AF-991D-76958C673020}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F872B4B8-7CAD-41AF-991D-76958C673020}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F872B4B8-7CAD-41AF-991D-76958C673020}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F872B4B8-7CAD-41AF-991D-76958C673020}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E7A34B40-1FBE-430E-BEAC-1A1A15CE80E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E7A34B40-1FBE-430E-BEAC-1A1A15CE80E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7A34B40-1FBE-430E-BEAC-1A1A15CE80E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -36,5 +32,9 @@ Global
 		{5CF94BF7-66C1-412A-8DFD-346F2014BEAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CF94BF7-66C1-412A-8DFD-346F2014BEAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CF94BF7-66C1-412A-8DFD-346F2014BEAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81AA2C65-A2BB-426B-9738-2C61A327486E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81AA2C65-A2BB-426B-9738-2C61A327486E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81AA2C65-A2BB-426B-9738-2C61A327486E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81AA2C65-A2BB-426B-9738-2C61A327486E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

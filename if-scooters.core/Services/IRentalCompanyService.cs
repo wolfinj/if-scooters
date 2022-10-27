@@ -1,6 +1,6 @@
-namespace if_scooters;
+namespace if_scooters.core.Services;
 
-public interface IRentalCompany
+public interface IRentalCompanyService
 {
     /// <summary>
     /// Name of the company.
@@ -11,7 +11,7 @@ public interface IRentalCompany
     /// Start the rent of the scooter.
     /// </summary>
     /// <param name="id">ID of the scooter</param>
-    void StartRent(string id);
+    void StartRent(int id);
 
     /// <summary>
     /// End the rent of the scooter.
@@ -19,7 +19,7 @@ public interface IRentalCompany
     /// <param name="id">ID of the scooter</param>
     /// <returns>The total price of rental. It has to calculated taking into account for how long time scooter was rented.
     /// If total amount per day reaches 20 EUR than timer must be stopped and restarted at beginning of next day at 0:00 am.</returns>
-    decimal EndRent(string id);
+    decimal EndRent(int id);
 
     /// <summary>
     /// Income report.

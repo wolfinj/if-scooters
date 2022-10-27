@@ -1,4 +1,4 @@
-namespace if_scooters.Exceptions;
+namespace if_scooters.core.Exceptions;
 
 public class InvalidYearException : Exception
 {
