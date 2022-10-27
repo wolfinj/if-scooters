@@ -1,4 +1,4 @@
-namespace FlightPlanner.Core.Interfaces;
+namespace if_scooters.core.Interfaces;
 
 public interface IEntity
 {

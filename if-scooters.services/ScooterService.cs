@@ -5,13 +5,13 @@ using if_scooters.data;
 
 namespace if_scooters.services;
 
-public class ScooterService : EntityService<Scooter>, IScooterService 
+public class ScooterService : EntityService<Scooter>, IScooterService
 {
     public ScooterService(IScooterDbContext context) : base(context)
     {
     }
 
-    public IServiceResult AddScooter( decimal pricePerMinute)
+    public IServiceResult AddScooter(decimal pricePerMinute)
     {
         try
         {
@@ -19,7 +19,7 @@ public class ScooterService : EntityService<Scooter>, IScooterService
             {
                 throw new InvalidPriceException(pricePerMinute);
             }
-            
+
             var newScooter = new Scooter(pricePerMinute);
             Context.Scooters.Add(newScooter);
             Context.SaveChanges();
@@ -28,10 +28,8 @@ public class ScooterService : EntityService<Scooter>, IScooterService
         }
         catch (Exception e)
         {
-            
             return new ServiceResult(false).AddError(e.Message).SetExecption(e);
         }
-        
     }
 
     public IServiceResult RemoveScooter(int id)
@@ -49,7 +47,6 @@ public class ScooterService : EntityService<Scooter>, IScooterService
             Context.SaveChanges();
 
             return new ServiceResult(true);
-
         }
         catch (Exception e)
         {
@@ -64,7 +61,7 @@ public class ScooterService : EntityService<Scooter>, IScooterService
 
     public Scooter GetScooterById(int scooterId)
     {
-        return Context.Scooters.SingleOrDefault(scooter => scooter.Id == scooterId) 
+        return Context.Scooters.SingleOrDefault(scooter => scooter.Id == scooterId)
                ?? throw new ScooterDoesNotExistsException(scooterId);
     }
 }

@@ -9,7 +9,7 @@ public interface IScooterService
     /// </summary>
     /// <param name="id">Unique ID of the scooter</param>
     /// <param name="pricePerMinute">Rental price of the scooter per one minute</param>
-    IServiceResult AddScooter( decimal pricePerMinute);
+    IServiceResult AddScooter(decimal pricePerMinute);
 
     /// <summary>
     /// Remove scooter. This action is not allowed for scooters if the rental is in progress.

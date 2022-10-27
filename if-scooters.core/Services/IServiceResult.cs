@@ -1,4 +1,4 @@
-using FlightPlanner.Core.Interfaces;
+using if_scooters.core.Interfaces;
 
 namespace if_scooters.core.Services;
 

@@ -2,7 +2,7 @@ using if_scooters.core.Models;
 
 namespace if_scooters.core.Services;
 
-public interface IEntityService<T> where T :Entity
+public interface IEntityService<T> where T : Entity
 {
     ServiceResult Create(T entity);
     ServiceResult Delete(T entity);

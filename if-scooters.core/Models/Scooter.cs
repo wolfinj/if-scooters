@@ -1,6 +1,6 @@
 namespace if_scooters.core.Models;
 
-public class Scooter :Entity
+public class Scooter : Entity
 {
     /// <summary>
     /// Create new instance of the scooter.
@@ -16,7 +16,6 @@ public class Scooter :Entity
 
     public Scooter()
     {
-        
     }
 
     public Scooter(decimal pricePerMinute)
@@ -27,7 +26,6 @@ public class Scooter :Entity
     /// <summary>
     /// Unique ID of the scooter.
     /// </summary>
-
     /// <summary>
     /// Rental price of the scooter per one minute.
     /// </summary>

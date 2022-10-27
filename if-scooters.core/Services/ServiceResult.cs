@@ -1,11 +1,11 @@
-using FlightPlanner.Core.Interfaces;
+using if_scooters.core.Interfaces;
 
 namespace if_scooters.core.Services;
 
 public class ServiceResult : IServiceResult
 {
     public bool Success { get; private set; }
-    
+
     public ServiceResult(bool succes)
     {
         Success = succes;
@@ -17,9 +17,9 @@ public class ServiceResult : IServiceResult
         Entity = entity;
         return this;
     }
-    
+
     public IEntity Entity { get; private set; }
-    
+
     public IList<string> Errors { get; set; }
 
     public ServiceResult AddError(string error)
@@ -27,7 +27,7 @@ public class ServiceResult : IServiceResult
         Errors.Add(error);
         return this;
     }
-    
+
     public Exception Exception { get; set; }
 
     public ServiceResult SetExecption(Exception exception)
@@ -36,6 +36,6 @@ public class ServiceResult : IServiceResult
 
         return this;
     }
-    
+
     public string FormattedErrors => string.Join(",", Errors);
 }

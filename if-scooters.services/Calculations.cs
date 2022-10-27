@@ -4,7 +4,6 @@ namespace if_scooters.services;
 
 public static class Calculations
 {
-    
     public static decimal CalculateRentBetweenDates(DateTime start, DateTime? end, decimal rate,
         decimal maxCostPerDay = 20)
     {

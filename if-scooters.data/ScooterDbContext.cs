@@ -8,7 +8,7 @@ public class ScooterDbContext : DbContext, IScooterDbContext
     public DbSet<Scooter> Scooters { get; set; }
     public DbSet<RentedScooter> RentedScooters { get; set; }
 
-    public ScooterDbContext(DbContextOptions<ScooterDbContext>options):base(options)
+    public ScooterDbContext(DbContextOptions<ScooterDbContext> options) : base(options)
     {
     }
 

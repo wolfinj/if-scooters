@@ -14,10 +14,8 @@ public class RentalCompanyService : IRentalCompanyService
 
     public string Name { get; }
 
-    
-    public RentalCompanyService( IScooterService scooterService,IScooterDbContext context)
+    public RentalCompanyService(IScooterService scooterService, IScooterDbContext context)
     {
-        // Name = name;
         _scooterService = scooterService;
         _dbContext = context;
     }
@@ -33,7 +31,8 @@ public class RentalCompanyService : IRentalCompanyService
 
         scooter.IsRented = true;
 
-        _dbContext.RentedScooters.Add(new RentedScooter(scooter.Id, DateTime.UtcNow.AddHours(3), scooter.PricePerMinute));
+        _dbContext.RentedScooters.Add(
+            new RentedScooter(scooter.Id, DateTime.UtcNow.AddHours(3), scooter.PricePerMinute));
         _dbContext.SaveChanges();
     }
 
@@ -41,16 +40,20 @@ public class RentalCompanyService : IRentalCompanyService
     {
         var scooter = _scooterService.GetScooterById(id);
 
-        var rentedScooter = _dbContext.RentedScooters.LastOrDefault(scoot => scoot.ScooterId == id);
+        var rentedScooters = _dbContext.RentedScooters.Where(scoot => scoot.ScooterId == id);
 
-        if (rentedScooter is null)
+
+        if (!rentedScooters.Any())
         {
             throw new ScooterIsNotRentedException(id);
         }
 
+        var rentedScooter = rentedScooters.OrderBy(s => s.RentStart).Last();
+
         rentedScooter.RentEnd = DateTime.UtcNow.AddHours(3);
 
         scooter.IsRented = false;
+        _dbContext.SaveChanges();
 
         return CalculateRentBetweenDates(rentedScooter.RentStart, rentedScooter.RentEnd, rentedScooter.PricePerMinute);
     }
@@ -59,7 +62,7 @@ public class RentalCompanyService : IRentalCompanyService
     {
         IList<RentedScooter> rentsOfYear;
 
-        if (year.HasValue)
+        if (year.HasValue && year is not 0)
         {
             if (year > DateTime.Now.Year)
             {
@@ -70,7 +73,7 @@ public class RentalCompanyService : IRentalCompanyService
             {
                 rentsOfYear = _dbContext.RentedScooters
                     .Where(rental =>
-                        rental.RentEnd == null || 
+                        rental.RentEnd == null ||
                         rental.RentEnd.Value.Year == year)
                     .ToList();
             }
